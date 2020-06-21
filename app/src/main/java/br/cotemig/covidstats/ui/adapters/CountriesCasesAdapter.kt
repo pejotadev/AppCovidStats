@@ -8,12 +8,11 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import br.cotemig.covidstats.R
 import br.cotemig.covidstats.models.CountryCases
-import br.cotemig.covidstats.models.StatesCases
 
 class CountriesCasesAdapter (var context: Context, var list: List<CountryCases>) : BaseAdapter(){
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
-        var view = LayoutInflater.from(context).inflate(R.layout.item_states_cases, null)
+        var view = LayoutInflater.from(context).inflate(R.layout.item_cases, null)
 
         var nome = view.findViewById<TextView>(R.id.nome)
         var total = view.findViewById<TextView>(R.id.total)
