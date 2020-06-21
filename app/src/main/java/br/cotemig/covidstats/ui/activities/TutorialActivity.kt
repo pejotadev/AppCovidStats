@@ -1,10 +1,11 @@
 package br.cotemig.covidstats.ui.activities
 
 
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import br.cotemig.covidstats.R
@@ -12,6 +13,7 @@ import br.cotemig.covidstats.helpers.LinePagerIndicatorDecoration
 import br.cotemig.covidstats.models.TutorialValues
 import br.cotemig.covidstats.ui.adapters.TutorialAdapter
 import kotlinx.android.synthetic.main.activity_tutorial.*
+
 
 class TutorialActivity : AppCompatActivity(), LinePagerIndicatorDecoration.OnViewPosition {
     var imagens = ArrayList<TutorialValues>()
@@ -44,7 +46,10 @@ class TutorialActivity : AppCompatActivity(), LinePagerIndicatorDecoration.OnVie
     }
 
     private fun gotoMenu() {
-
+        val sharedPreferences = getSharedPreferences(packageName + "_preferences", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putBoolean("hasSeenTutorial", true)
+        editor.commit()
         var intent = Intent(this@TutorialActivity, MenuActivity::class.java)
         startActivity(intent)
     }

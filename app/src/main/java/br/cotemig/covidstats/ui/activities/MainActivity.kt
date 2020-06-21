@@ -1,9 +1,11 @@
 package br.cotemig.covidstats.ui.activities
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import androidx.appcompat.app.AlertDialog
 import br.cotemig.covidstats.R
 
 class MainActivity : AppCompatActivity() {
@@ -18,8 +20,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun initApp(){
-        var intent = Intent(this@MainActivity, TutorialActivity::class.java)
-        startActivity(intent)
+        val sharedPreferences = getSharedPreferences(packageName + "_preferences", Context.MODE_PRIVATE)
+        val tutorialValue = sharedPreferences.getBoolean("hasSeenTutorial", false)
+
+        if (tutorialValue === false) {
+            var intentTutorial = Intent(this@MainActivity, TutorialActivity::class.java)
+            startActivity(intentTutorial)
+        } else {
+            var intentMenu = Intent(this@MainActivity, MenuActivity::class.java)
+            startActivity(intentMenu)
+        }
         finish()
     }
 }
