@@ -4,10 +4,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import br.cotemig.covidstats.R
+import br.cotemig.covidstats.models.StateDataResponse
 import br.cotemig.covidstats.models.StatesCases
 import br.cotemig.covidstats.services.RetrofitInitializer
+import com.github.mikephil.charting.data.*
+import com.github.mikephil.charting.formatter.PercentFormatter
+import kotlinx.android.synthetic.main.activity_data_state.*
 import retrofit2.Call
 import retrofit2.Response
+import com.github.mikephil.charting.utils.ColorTemplate
 
 class DataStateActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,10 +22,12 @@ class DataStateActivity : AppCompatActivity() {
         val estado: String = intent.getStringExtra("uf")
         getCases(estado)
 
+
     }
 
 
-    fun getCases(uf: String) {
+
+fun getCases(uf: String) {
         var s = RetrofitInitializer().serviceCases()
 
         var call = s.getCasesState(uf)
@@ -33,9 +40,43 @@ class DataStateActivity : AppCompatActivity() {
             ) {
                 response?.let {
                     if (it.code() == 200) {
+                        val NoOfEmp= ArrayList<Entry>()
 
-                        var data = it.body()
-// .
+                        // porcentagem de mortos: (102/7461) * 100
+                        var x = it.body()
+                        val pDead = (it.body().deaths * 100 ) / it.body().cases
+                        //val pRec = (it.body().refuses * 100 ) / it.body().cases
+                        val pTot = 100  - pDead
+
+                        NoOfEmp.add(Entry(pDead.toFloat(), 0))
+                        //NoOfEmp.add(Entry(pRec.toFloat(), 1))
+                        NoOfEmp.add(Entry(pTot.toFloat(), 2))
+
+
+                        val dataSet = PieDataSet(NoOfEmp, "Porcentagem")
+
+                        val year= ArrayList<String>()
+                        year.add("Mortos")
+                        //year.add("Recuperados")
+                        year.add("Ativos / recuperados")
+
+                        val colors = ArrayList<Int>()
+                        colors.add(R.color.red)
+                        //colors.add(R.color.verdeSucesso)
+                        colors.add(R.color.grey)
+                        dataSet.setColors(colors)
+
+                        val data = PieData(year, dataSet)
+
+                        data.setValueTextColor(R.color.colorPrimaryDark);
+                        dataSet.setValueFormatter( PercentFormatter() )
+                        dataSet.setValueTextColor(R.color.colorPrimaryDark);
+
+                        pieChart.data = data
+//        dataSet?.setColors(*ColorTemplate.COLORFUL_COLORS)
+                        pieChart.animateXY(5000, 2000)
+
+
                     }
                 }
             }
@@ -45,10 +86,6 @@ class DataStateActivity : AppCompatActivity() {
             }
 
         })
-
-    }
-
-    fun setupPieChartView() {
 
     }
 
