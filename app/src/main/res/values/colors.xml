@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="azulsuave">#cce6ff</color>
+    <color name="azulsuavebutton">#e6f2ff</color>
+    <color name="grey">#c2c2c2</color>
+    <color name="red">#E82F2F</color>
+</resources>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.StatesListFragment">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/azulsuavebutton"
+        tools:context=".ui.activities.StatesListActivity">
+
+        <EditText
+            android:background="@color/azulsuavebutton"
+            android:padding="10dp"
+            android:id="@+id/pesquisarEstado"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:hint="@string/pesquisar"
+            android:inputType="text" />
+
+        <ListView
+            android:background="@color/azulsuavebutton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/listviewlayout"/>
+
+    </LinearLayout>
+</FrameLayout>

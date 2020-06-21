@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.BrasilFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginHorizontal="20dp">
+
+        <TextView
+            android:id="@+id/titulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Brasil"
+            android:textAllCaps="true"
+            android:textSize="40dp"
+            android:layout_centerHorizontal="true"/>
+
+        <LinearLayout
+            android:id="@+id/cards"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/titulo"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/cardVerde"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_green"
+                android:layout_below="@+id/titulo"
+                android:layout_marginRight="10dp">
+
+                <TextView
+                    android:id="@+id/labelRecuperados"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Casos recuperados"
+                    android:textColor="@android:color/white"
+                    android:textSize="15dp"
+                    android:textAllCaps="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"/>
+
+                <TextView
+                    android:id="@+id/recuperados"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/labelRecuperados"
+                    android:textColor="@android:color/white"
+                    android:textSize="25dp"
+                    android:layout_marginLeft="10dp"
+                    android:textAllCaps="true"/>
+                <TextView
+                    android:id="@+id/labelAtivos"
+                    android:layout_below="@+id/recuperados"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Casos ativos"
+                    android:textColor="@android:color/white"
+                    android:textSize="15dp"
+                    android:textAllCaps="true"
+                    android:layout_marginLeft="10dp"/>
+
+                <TextView
+                    android:id="@+id/ativos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/labelAtivos"
+                    android:textColor="@android:color/white"
+                    android:textSize="25dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:textAllCaps="true"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_red"
+                android:layout_below="@+id/titulo"
+                android:layout_toEndOf="@+id/cardVerde"
+                android:layout_toRightOf="@+id/cardVerde">
+
+                <TextView
+                    android:id="@+id/labelMortesDia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Obitos último dia"
+                    android:textColor="@android:color/white"
+                    android:textSize="15dp"
+                    android:textAllCaps="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"/>
+
+                <TextView
+                    android:id="@+id/mortesDia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/labelMortesDia"
+                    android:textColor="@android:color/white"
+                    android:textSize="25dp"
+                    android:layout_marginLeft="10dp"
+                    android:textAllCaps="true"/>
+                <TextView
+                    android:id="@+id/labelMortesTotal"
+                    android:layout_below="@+id/mortesDia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="total mortes"
+                    android:textColor="@android:color/white"
+                    android:textSize="15dp"
+                    android:textAllCaps="true"
+                    android:layout_marginLeft="10dp"/>
+
+                <TextView
+                    android:id="@+id/mortesTotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/labelMortesTotal"
+                    android:textColor="@android:color/white"
+                    android:textSize="25dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:textAllCaps="true"/>
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:layout_below="@+id/cards"
+            android:id="@+id/barDiaryChart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/cardview_light_background">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="carregando"/>
+
+    </RelativeLayout>
+
+</FrameLayout>

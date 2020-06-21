@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/azulsuave"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_white"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/nome"
+            android:textSize="35dp"
+            android:paddingTop="5dp"
+            android:paddingLeft="5dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/total"
+            android:layout_below="@+id/nome"
+            android:textSize="30dp"
+            android:paddingTop="5dp"
+            android:paddingLeft="5dp"/>
+
+        <TextView
+            android:id="@+id/mortoslabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="0dp"
+            android:text="@string/mortos"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="25dp"
+            android:textSize="25dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/mortos"
+            android:layout_below="@+id/mortoslabel"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="25dp"/>
+
+        <TextView
+            android:id="@+id/recuperadoslabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="5dp"
+            android:text="@string/recuperados"
+            android:layout_below="@+id/mortos"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="25dp"
+            android:textSize="25dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/recuperados"
+            android:layout_below="@+id/recuperadoslabel"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="25dp"/>
+
+
+    </RelativeLayout>
+
+</LinearLayout>
