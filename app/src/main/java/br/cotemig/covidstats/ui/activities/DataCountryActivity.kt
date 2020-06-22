@@ -66,7 +66,7 @@ class DataCountryActivity : AppCompatActivity() {
                         val lb= ArrayList<String>()
                         lb.add("Mortos")
                         lb.add("Recuperados")
-                        lb.add("Ativos / recuperados")
+                        lb.add("Ativos")
 
                         val colors = ArrayList<Int>()
                         colors.add(R.color.red)
