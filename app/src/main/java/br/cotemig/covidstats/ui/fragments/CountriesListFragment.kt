@@ -2,6 +2,7 @@ package br.cotemig.covidstats.ui.fragments
 
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -14,6 +15,8 @@ import br.cotemig.covidstats.R
 import br.cotemig.covidstats.models.CountryCases
 import br.cotemig.covidstats.models.CountryCasesResponse
 import br.cotemig.covidstats.services.RetrofitInitializer
+import br.cotemig.covidstats.ui.activities.DataCountryActivity
+import br.cotemig.covidstats.ui.activities.DataStateActivity
 import br.cotemig.covidstats.ui.activities.MenuActivity
 import br.cotemig.covidstats.ui.adapters.CountriesCasesAdapter
 import kotlinx.android.synthetic.main.fragment_list_countries.*
@@ -60,7 +63,10 @@ class CountriesListFragment : Fragment() {
                             initListPais(myList)
 
                             listviewlayoutC.setOnItemClickListener{ parent, view, position, id ->
-                                var x = myList[position]
+
+                                var intent = Intent(activity, DataCountryActivity::class.java)
+                                intent.putExtra("pais", myList[position].country)
+                                startActivity(intent)
                             }
 
                             pesquisarPais.addTextChangedListener(object : TextWatcher {

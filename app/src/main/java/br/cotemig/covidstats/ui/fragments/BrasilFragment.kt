@@ -33,6 +33,14 @@ class BrasilFragment : Fragment() {
     ): View? {
         getCases()
         setBarChartDeads()
+        /*
+        cardVerde.setOnClickListener {
+            setBarChartRefuses()
+        }
+        cardVermelho.setOnClickListener {
+            setBarChartDeads()
+        }*/
+
         return inflater.inflate(R.layout.fragment_brasil, container, false)
     }
 
@@ -117,7 +125,51 @@ class BrasilFragment : Fragment() {
                         val data = BarData(labels, barDataSet)
                         barDiaryChart.data = data // set the data and list of lables into chart
 
-                        barDiaryChart.setDescription("Set Bar Chart Description")  // set the description
+                        barDiaryChart.setDescription("Brasil")  // set the description
+
+                        //barDataSet.setColors(ColorTemplate.COLORFUL_COLORS)
+                        barDataSet.color = resources.getColor(R.color.red)
+
+                        barDiaryChart.animateY(3000)
+
+                        loading.visibility = View.GONE
+
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<BrazilPerDayCasesResponse>?, t: Throwable?) {
+                Toast.makeText(activity, "Ops", Toast.LENGTH_LONG).show()
+            }
+
+        })
+    }
+
+    fun setBarChartRefuses(){
+        var s = RetrofitInitializer().serviceCasesGov()
+
+        var call = s.getCasesBrazilPerDay()
+
+        call.enqueue(object : retrofit2.Callback<BrazilPerDayCasesResponse>{
+
+            override fun onResponse(
+                call: Call<BrazilPerDayCasesResponse>?,
+                response: Response<BrazilPerDayCasesResponse>?
+            ) {
+                response?.let{
+                    if(it.code() == 200){
+                        val entries = ArrayList<BarEntry>()
+                        val barDataSet = BarDataSet(entries, "Casos Acumuladas")
+                        val labels = ArrayList<String>()
+                        it.body().dias.forEachIndexed { index, element ->
+                            entries.add(BarEntry(element.casosAcumulado.toFloat(), index))
+                            labels.add(element._id)
+                        }
+
+                        val data = BarData(labels, barDataSet)
+                        barDiaryChart.data = data // set the data and list of lables into chart
+
+                        barDiaryChart.setDescription("Brazil")  // set the description
 
                         //barDataSet.setColors(ColorTemplate.COLORFUL_COLORS)
                         barDataSet.color = resources.getColor(R.color.red)
