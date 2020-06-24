@@ -2,12 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/azulsuave">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white"
-        android:layout_marginTop="90dp"></LinearLayout>
+        android:layout_marginTop="100dp"></LinearLayout>
 
 
     <LinearLayout
@@ -18,39 +19,36 @@
         android:layout_height="100dp"
         android:id="@+id/actions">
 
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="12dp"
+            android:layout_weight="1"
+            android:id="@+id/estadosBrasileiros"
+            android:background="@drawable/background_white"
+            app:cardElevation="8dp">
+            <ImageView
+                android:layout_gravity="center"
+                android:src="@drawable/ic_brazil"
+                android:layout_height="50dp"
+                android:layout_width="50dp"/>
+        </com.google.android.material.card.MaterialCardView>
 
-            <RelativeLayout
-                android:background="@drawable/btn_left"
-                android:layout_marginTop="10dp"
-                android:id="@+id/estadosBrasileiros"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:padding="20dp"
-                android:layout_margin="1dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="12dp"
+            android:layout_weight="1"
+            android:id="@+id/paises"
+            android:background="@drawable/background_white"
+            app:cardElevation="8dp">
                 <ImageView
-                    android:layout_centerInParent="true"
-                    android:src="@drawable/ic_brazil"
-                    android:layout_height="100dp"
-                    android:layout_width="100dp"/>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:background="@drawable/btn_rigth"
-                android:layout_marginTop="10dp"
-                android:layout_margin="1dp"
-                android:id="@+id/paises"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:padding="20dp">
-
-                <ImageView
-                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
                     android:src="@drawable/ic_world"
-                    android:layout_height="100dp"
-                    android:layout_width="100dp"/>
-            </RelativeLayout>
+                    android:layout_height="50dp"
+                    android:layout_width="50dp"/>
+        </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
 

@@ -14,9 +14,7 @@
         <activity android:name=".ui.activities.DataCountryActivity"></activity>
         <activity android:name=".ui.activities.DataStateActivity" />
         <activity android:name=".ui.activities.TutorialActivity" />
-        <activity android:name=".ui.activities.DataActivity" />
         <activity android:name=".ui.activities.CountryListActivity" />
-        <activity android:name=".ui.activities.StatesListActivity" />
         <activity android:name=".ui.activities.MenuActivity" />
         <activity
             android:name=".ui.activities.MainActivity"

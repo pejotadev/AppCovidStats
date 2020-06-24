@@ -33,13 +33,6 @@ class BrasilFragment : Fragment() {
     ): View? {
         getCases()
         setBarChartDeads()
-        /*
-        cardVerde.setOnClickListener {
-            setBarChartRefuses()
-        }
-        cardVermelho.setOnClickListener {
-            setBarChartDeads()
-        }*/
 
         return inflater.inflate(R.layout.fragment_brasil, container, false)
     }

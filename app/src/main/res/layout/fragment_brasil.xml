@@ -5,18 +5,17 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.BrasilFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp">
+        android:layout_marginHorizontal="20dp"
+        android:paddingBottom="10dp">
 
         <TextView
             android:id="@+id/titulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Brasil"
-            android:textAllCaps="true"
+            android:text="@string/brasil"
             android:textSize="40dp"
             android:layout_centerHorizontal="true"/>
 
@@ -25,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/titulo"
-            android:layout_marginVertical="24dp"
+            android:layout_marginVertical="16dp"
             android:orientation="horizontal">
 
             <RelativeLayout
@@ -33,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:background="@drawable/background_green"
+                android:background="@drawable/shadow_card"
                 android:layout_below="@+id/titulo"
                 android:layout_marginRight="10dp">
 
@@ -42,7 +41,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Casos recuperados"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/verdeSucesso"
                     android:textSize="15dp"
                     android:textAllCaps="true"
                     android:layout_marginTop="10dp"
@@ -53,7 +52,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/labelRecuperados"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/verdeSucesso"
                     android:textSize="25dp"
                     android:layout_marginLeft="10dp"
                     android:textAllCaps="true"/>
@@ -63,7 +62,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Casos ativos"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/verdeSucesso"
                     android:textSize="15dp"
                     android:textAllCaps="true"
                     android:layout_marginLeft="10dp"/>
@@ -73,7 +72,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/labelAtivos"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/verdeSucesso"
                     android:textSize="25dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginBottom="10dp"
@@ -87,7 +86,7 @@
                 android:layout_width="match_parent"
                 android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/background_red"
+                android:background="@drawable/shadow_card"
                 android:layout_below="@+id/titulo"
                 android:layout_toEndOf="@+id/cardVerde"
                 android:layout_toRightOf="@+id/cardVerde">
@@ -97,7 +96,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Óbitos último dia"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/vermelhoErro"
                     android:textSize="15dp"
                     android:textAllCaps="true"
                     android:layout_marginTop="10dp"
@@ -108,7 +107,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/labelMortesDia"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/vermelhoErro"
                     android:textSize="25dp"
                     android:layout_marginLeft="10dp"
                     android:textAllCaps="true"/>
@@ -118,7 +117,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="total mortes"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/vermelhoErro"
                     android:textSize="15dp"
                     android:textAllCaps="true"
                     android:layout_marginLeft="10dp"/>
@@ -128,7 +127,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/labelMortesTotal"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/vermelhoErro"
                     android:textSize="25dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginBottom="10dp"
