@@ -12,6 +12,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@color/azulsuavebutton"
+        android:textColor="@color/colorPrimaryDark"
         tools:context=".ui.activities.StatesListActivity">
 
         <EditText

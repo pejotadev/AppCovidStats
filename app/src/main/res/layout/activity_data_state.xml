@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingHorizontal="20dp"
+    android:background="@drawable/background_white"
     tools:context=".ui.activities.DataStateActivity">
 
     <TextView
@@ -13,6 +14,7 @@
         android:layout_height="wrap_content"
         android:textSize="32sp"
         android:layout_centerHorizontal="true"
+        android:textColor="@color/colorPrimaryDark"
         android:paddingTop="16dp"/>
     <TextView
         android:id="@+id/suspeitos"

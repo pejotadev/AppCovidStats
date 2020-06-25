@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingHorizontal="20dp"
+    android:background="@drawable/background_white"
     tools:context=".ui.activities.DataStateActivity">
 
 
@@ -13,14 +14,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="32sp"
+        android:textColor="@color/colorPrimaryDark"
         android:layout_centerHorizontal="true"
         android:paddingTop="16dp"/>
     <TextView
-        android:id="@+id/suspeitos"
+        android:id="@+id/confirmados"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
         android:layout_marginRight="8dp"
+        android:textColor="@color/red"
         android:layout_below="@+id/nome"
         android:paddingTop="20dp"/>
 

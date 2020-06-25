@@ -15,6 +15,7 @@
             android:id="@+id/nome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="42dp" />
 
         <TextView

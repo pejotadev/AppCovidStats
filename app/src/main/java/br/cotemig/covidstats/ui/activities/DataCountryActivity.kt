@@ -46,6 +46,7 @@ class DataCountryActivity : AppCompatActivity() {
                     if (it.code() == 200) {
 
                         recuperadoss.text = "Recuperados " + it.body().data.recovered.toString()
+                        confirmados.text = "Confirmados " + it.body().data.confirmed.toString()
                         nome.text =  it.body().data.country.toString()
                         var atualizadoEm = "Ultima data: " + it.body().data.updated_at.toString()
 
@@ -60,29 +61,36 @@ class DataCountryActivity : AppCompatActivity() {
                         NoOfEmp.add(Entry(pRec.toFloat(), 1))
                         NoOfEmp.add(Entry(pTot.toFloat(), 2))
 
-
-                        val dataSet = PieDataSet(NoOfEmp, atualizadoEm)
-
                         val lb= ArrayList<String>()
                         lb.add("Mortos")
                         lb.add("Recuperados")
                         lb.add("Ativos")
 
-                        val colors = ArrayList<Int>()
-                        colors.add(R.color.red)
-                        //colors.add(R.color.verdeSucesso)
-                        colors.add(R.color.grey)
-                        dataSet.setColors(colors)
 
-                        val data = PieData(lb, dataSet)
+                        val colorsList = ArrayList<Int>()
+                        colorsList.add(R.color.red)
+                        colorsList.add(R.color.verdeSucesso)
+                        colorsList.add(R.color.grey)
 
-                        data.setValueTextColor(R.color.colorPrimaryDark);
+                        var dataSet = PieDataSet(NoOfEmp, atualizadoEm)
+                        var data = PieData(lb, dataSet)
+
+                        data.setValueTextColor(R.color.colorPrimaryDark)
+                        data.setValueTextSize(20f)
+                        dataSet.setColors(colorsList)
+
                         dataSet.setValueFormatter( PercentFormatter() )
                         dataSet.setValueTextColor(R.color.colorPrimaryDark);
+                        dataSet.isHighlightEnabled = true
+                        dataSet.sliceSpace = 10f //Margem entre pies do gráfico
 
                         porcentagemPaisChart.data = data
-//        dataSet?.setColors(*ColorTemplate.COLORFUL_COLORS)
-                        porcentagemPaisChart.animateXY(5000, 2000)
+                        porcentagemPaisChart.animateXY(2000, 2000)
+                        porcentagemPaisChart.data = data
+                        porcentagemPaisChart.legend.isEnabled = false //Removendo legenda
+                        porcentagemPaisChart.isDrawHoleEnabled = true //Exibe o círculo no centro do gráfico
+                        porcentagemPaisChart.holeRadius = 20f //Tamanho do círculo
+                        porcentagemPaisChart.transparentCircleRadius = 60f //Tamanho do círculo (parte transparente)
 
                     }
                 }

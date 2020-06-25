@@ -42,42 +42,44 @@ class DataStateActivity : AppCompatActivity() {
                         recuperadoss.text = "Recuperados " + it.body().refuses.toString()
                         nome.text =  it.body().state.toString()
                         suspeitos.text = "Suspeitos: " + it.body().suspects.toString()
-                        var atualizadoEm = "Ultima atualização " + it.body().datetime.toString()
-
-
-                        val NoOfEmp= ArrayList<Entry>()
-
+                        val atualizadoEm = "Ultima atualização " + it.body().datetime.toString()
                         val pDead = (it.body().deaths * 100 ) / it.body().cases
                         //val pRec = (it.body().refuses * 100 ) / it.body().cases
                         val pTot = 100  - pDead
 
+                        val NoOfEmp= ArrayList<Entry>()
                         NoOfEmp.add(Entry(pDead.toFloat(), 0))
                         //NoOfEmp.add(Entry(pRec.toFloat(), 1))
                         NoOfEmp.add(Entry(pTot.toFloat(), 2))
-
-
-                        val dataSet = PieDataSet(NoOfEmp, atualizadoEm)
-
                         val lb= ArrayList<String>()
                         lb.add("Mortos")
                         //year.add("Recuperados")
                         lb.add("Ativos / recuperados")
+                        val colorsList = ArrayList<Int>()
+                        colorsList.add(R.color.design_default_color_error)
+                        //colorsList.add(R.color.verdeSucesso)
+                        colorsList.add(R.color.grey)
 
-                        val colors = ArrayList<Int>()
-                        colors.add(R.color.red)
-                        //colors.add(R.color.verdeSucesso)
-                        colors.add(R.color.grey)
-                        dataSet.setColors(colors)
+                        var dataSet = PieDataSet(NoOfEmp, atualizadoEm)
+                        var data = PieData(lb, dataSet)
 
-                        val data = PieData(lb, dataSet)
+                        data.setValueTextColor(R.color.colorPrimaryDark)
+                        data.setValueTextSize(20f)
+                        dataSet.setColors(colorsList)
 
-                        data.setValueTextColor(R.color.colorPrimaryDark);
                         dataSet.setValueFormatter( PercentFormatter() )
                         dataSet.setValueTextColor(R.color.colorPrimaryDark);
+                        dataSet.isHighlightEnabled = true
+                        dataSet.sliceSpace = 10f //Margem entre pies do gráfico
 
                         porcentagemEstadoChart.data = data
-//        dataSet?.setColors(*ColorTemplate.COLORFUL_COLORS)
-                        porcentagemEstadoChart.animateXY(5000, 2000)
+                        porcentagemEstadoChart.animateXY(2000, 2000)
+                        porcentagemEstadoChart.data = data
+                        porcentagemEstadoChart.legend.isEnabled = false //Removendo legenda
+                        porcentagemEstadoChart.isDrawHoleEnabled = true //Exibe o círculo no centro do gráfico
+                        porcentagemEstadoChart.holeRadius = 20f //Tamanho do círculo
+                        porcentagemEstadoChart.transparentCircleRadius = 60f //Tamanho do círculo (parte transparente)
+
 
                     }
                 }
