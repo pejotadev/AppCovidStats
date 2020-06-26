@@ -1,6 +1,7 @@
 package br.cotemig.covidstats.ui.fragments
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,10 +15,15 @@ import br.cotemig.covidstats.ui.activities.MenuActivity
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
-import kotlinx.android.synthetic.main.activity_data_state.*
 import kotlinx.android.synthetic.main.fragment_brasil.*
+import kotlinx.android.synthetic.main.fragment_brasil.view.*
 import retrofit2.Call
 import retrofit2.Response
+import java.math.RoundingMode
+import java.text.DecimalFormat
+import java.text.NumberFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 /**
@@ -34,7 +40,20 @@ class BrasilFragment : Fragment() {
         getCases()
         setBarChartDeads()
 
-        return inflater.inflate(R.layout.fragment_brasil, container, false)
+        //return inflater.inflate(R.layout.fragment_brasil, container, false)
+
+        val view: View = inflater!!.inflate(R.layout.fragment_brasil, container, false)
+
+        view.cardVermelho.setOnClickListener { view ->
+            setBarChartDeads()
+        }
+
+        view.cardVerde.setOnClickListener { view ->
+            setBarChartRefuses()
+        }
+
+        return view
+
     }
 
     fun getCases(){
@@ -51,10 +70,11 @@ class BrasilFragment : Fragment() {
             ) {
                 response?.let{
                     if(it.code() == 200){
+                        var numberFormat = NumberFormat.getNumberInstance(Locale("pt","BR"))
 
-                        recuperados.text = it.body().data.recovered.toString()
-                        ativos.text = it.body().data.cases.toString()
-                        mortesTotal.text = it.body().data.deaths.toString()
+                        recuperados.text = numberFormat.format(it.body().data.recovered)
+                        ativos.text = numberFormat.format(it.body().data.cases)
+                        mortesTotal.text = numberFormat.format(it.body().data.deaths)
                         getDeathsLastDay()
 
                     }
@@ -81,8 +101,10 @@ class BrasilFragment : Fragment() {
             ) {
                 response?.let{
                     if(it.code() == 200){
+                        var numberFormat = NumberFormat.getNumberInstance(Locale("pt","BR"))
                         var lastDay = it.body().dias[it.body().dias.size - 1]
-                        mortesDia.text = lastDay.obitosNovos.toString()
+
+                        mortesDia.text = numberFormat.format(lastDay.obitosNovos)
                     }
                 }
             }
@@ -123,7 +145,7 @@ class BrasilFragment : Fragment() {
                         //barDataSet.setColors(ColorTemplate.COLORFUL_COLORS)
                         barDataSet.color = resources.getColor(R.color.red)
 
-                        barDiaryChart.animateY(3000)
+                        barDiaryChart.animateY(2000)
 
                         loading.visibility = View.GONE
 
@@ -152,7 +174,7 @@ class BrasilFragment : Fragment() {
                 response?.let{
                     if(it.code() == 200){
                         val entries = ArrayList<BarEntry>()
-                        val barDataSet = BarDataSet(entries, "Casos Acumuladas")
+                        val barDataSet = BarDataSet(entries, "Recuperados Acumuladas")
                         val labels = ArrayList<String>()
                         it.body().dias.forEachIndexed { index, element ->
                             entries.add(BarEntry(element.casosAcumulado.toFloat(), index))
@@ -165,9 +187,9 @@ class BrasilFragment : Fragment() {
                         barDiaryChart.setDescription("Brazil")  // set the description
 
                         //barDataSet.setColors(ColorTemplate.COLORFUL_COLORS)
-                        barDataSet.color = resources.getColor(R.color.red)
+                        barDataSet.color = resources.getColor(R.color.verdeSucesso)
 
-                        barDiaryChart.animateY(3000)
+                        barDiaryChart.animateY(2000)
 
                         loading.visibility = View.GONE
 

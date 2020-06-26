@@ -8,9 +8,12 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import br.cotemig.covidstats.R
 import br.cotemig.covidstats.models.CountryCases
+import java.text.NumberFormat
+import java.util.*
 
 class CountriesCasesAdapter (var context: Context, var list: List<CountryCases>) : BaseAdapter(){
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+        var numberFormat = NumberFormat.getNumberInstance(Locale("pt","BR"))
 
         var view = LayoutInflater.from(context).inflate(R.layout.item_cases, null)
 
@@ -20,8 +23,8 @@ class CountriesCasesAdapter (var context: Context, var list: List<CountryCases>)
         var recuperados = view.findViewById<TextView>(R.id.recuperados)
 
         nome.text = list[position].country
-        mortes.text = list[position].deaths.toString()
-        recuperados.text = list[position].recovered.toString()
+        mortes.text =  numberFormat.format(list[position].deaths)
+        recuperados.text =  numberFormat.format(list[position].recovered)
 
         return view
 
