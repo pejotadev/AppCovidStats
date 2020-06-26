@@ -46,7 +46,7 @@ class DataCountryActivity : AppCompatActivity() {
                         recuperadoss.text = "Recuperados " + it.body().data.recovered.toString()
                         confirmados.text = "Confirmados " + it.body().data.confirmed.toString()
                         nome.text =  it.body().data.country.toString()
-                        var atualizadoEm = "Ultima data: " + it.body().data.updated_at.toString()
+                        var atualizadoEm = "Ultima data: " + it.body().data.updated_at
 
 
                         val NoOfEmp= ArrayList<Entry>()
