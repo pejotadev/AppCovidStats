@@ -4,23 +4,21 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import br.cotemig.covidstats.R
-import br.cotemig.covidstats.models.CountryCases
 import br.cotemig.covidstats.models.OneCountryCaseResponse
-import br.cotemig.covidstats.models.StatesCases
 import br.cotemig.covidstats.services.RetrofitInitializer
+import br.cotemig.covidstats.ui.traits.FormatacaoTrait
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.formatter.PercentFormatter
 import kotlinx.android.synthetic.main.activity_data_country.*
-import kotlinx.android.synthetic.main.activity_data_state.*
 import kotlinx.android.synthetic.main.activity_data_state.nome
 import kotlinx.android.synthetic.main.activity_data_state.recuperadoss
-import kotlinx.android.synthetic.main.activity_data_state.suspeitos
 import retrofit2.Call
 import retrofit2.Response
 
 class DataCountryActivity : AppCompatActivity() {
+    var numberFormat = FormatacaoTrait()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_data_country)
@@ -53,9 +51,9 @@ class DataCountryActivity : AppCompatActivity() {
 
                         val NoOfEmp= ArrayList<Entry>()
 
-                        val pDead = (it.body().data.deaths * 100 ) / it.body().data.confirmed
-                        val pRec = (it.body().data.recovered * 100 ) / it.body().data.confirmed
-                        val pTot = 100  - pDead - pRec
+                        val pDead = (it.body().data.deaths * 100.0 ) / it.body().data.confirmed
+                        val pRec = (it.body().data.recovered * 100.0 ) / it.body().data.confirmed
+                        val pTot = 100.0  - pDead - pRec
 
                         NoOfEmp.add(Entry(pDead.toFloat(), 0))
                         NoOfEmp.add(Entry(pRec.toFloat(), 1))

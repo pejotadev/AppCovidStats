@@ -12,6 +12,7 @@ import br.cotemig.covidstats.models.BrazilCasesResponse
 import br.cotemig.covidstats.models.BrazilPerDayCasesResponse
 import br.cotemig.covidstats.services.RetrofitInitializer
 import br.cotemig.covidstats.ui.activities.MenuActivity
+import br.cotemig.covidstats.ui.traits.FormatacaoTrait
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
@@ -32,6 +33,7 @@ import kotlin.collections.ArrayList
  */
 class BrasilFragment : Fragment() {
     //var activity = context as MenuActivity
+    var numberFormat = FormatacaoTrait()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -70,11 +72,10 @@ class BrasilFragment : Fragment() {
             ) {
                 response?.let{
                     if(it.code() == 200){
-                        var numberFormat = NumberFormat.getNumberInstance(Locale("pt","BR"))
 
-                        recuperados.text = numberFormat.format(it.body().data.recovered)
-                        ativos.text = numberFormat.format(it.body().data.cases)
-                        mortesTotal.text = numberFormat.format(it.body().data.deaths)
+                        recuperados.text = numberFormat.formatarNumero(it.body().data.recovered)
+                        ativos.text = numberFormat.formatarNumero(it.body().data.cases)
+                        mortesTotal.text = numberFormat.formatarNumero(it.body().data.deaths)
                         getDeathsLastDay()
 
                     }
@@ -101,10 +102,9 @@ class BrasilFragment : Fragment() {
             ) {
                 response?.let{
                     if(it.code() == 200){
-                        var numberFormat = NumberFormat.getNumberInstance(Locale("pt","BR"))
                         var lastDay = it.body().dias[it.body().dias.size - 1]
 
-                        mortesDia.text = numberFormat.format(lastDay.obitosNovos)
+                        mortesDia.text = numberFormat.formatarNumero(lastDay.obitosNovos)
                     }
                 }
             }

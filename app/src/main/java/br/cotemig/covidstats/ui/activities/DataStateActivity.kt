@@ -6,6 +6,7 @@ import android.widget.Toast
 import br.cotemig.covidstats.R
 import br.cotemig.covidstats.models.StatesCases
 import br.cotemig.covidstats.services.RetrofitInitializer
+import br.cotemig.covidstats.ui.traits.FormatacaoTrait
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
@@ -15,6 +16,7 @@ import retrofit2.Call
 import retrofit2.Response
 
 class DataStateActivity : AppCompatActivity() {
+    var numberFormat = FormatacaoTrait()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_data_state)
@@ -39,13 +41,13 @@ class DataStateActivity : AppCompatActivity() {
                 response?.let {
                     if (it.code() == 200) {
 
-                        recuperadoss.text = "Recuperados " + it.body().refuses.toString()
+                        recuperadoss.text = "Recuperados " + numberFormat.formatarNumero(it.body().refuses)
                         nome.text =  it.body().state.toString()
-                        suspeitos.text = "Suspeitos: " + it.body().suspects.toString()
+                        suspeitos.text = "Suspeitos: " + numberFormat.formatarNumero(it.body().suspects)
                         val atualizadoEm = "Ultima atualização " + it.body().datetime.toString()
-                        val pDead = (it.body().deaths * 100 ) / it.body().cases
+                        val pDead = (it.body().deaths * 100.0 ) / it.body().cases
                         //val pRec = (it.body().refuses * 100 ) / it.body().cases
-                        val pTot = 100  - pDead
+                        val pTot = 100.0  - pDead
 
                         val NoOfEmp= ArrayList<Entry>()
                         NoOfEmp.add(Entry(pDead.toFloat(), 0))
